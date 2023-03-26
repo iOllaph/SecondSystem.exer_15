@@ -1,35 +1,37 @@
+
 const itemContainer = document.querySelector(".item-container");
 
-
+// Footer Const
 const footerCart = document.querySelector(".footer");
 const footerCartQuantity = document.querySelector(".footer-cart-item");
 const footerCartValue = document.querySelector(".footer-cart-value");
 
 
-const itemImage = document.querySelector(".item-image");
-const itemTitle = document.querySelector(".item-name");
-const itemPrice = document.querySelector(".item-price");
-
-
-
+// totaValue represents the total value of the cart
 let totalValue = 0;
 
 
-
-
+// The selected items will go inside this vector
 let cart = [];
 
+
+// Get the items stored and put them in the cart vector
 if (localStorage.getItem("cart")) {
     cart = JSON.parse(localStorage.getItem("cart"))
 }
 
+
+// If the page gets refresh and are items in the cart the footer will no dissapear
 if (cart.length > 0) {
     footerCart.style.opacity = "1";
 }
 
+
+// Get the items quantity stored and put them in the inner text
 footerCartQuantity.innerText = localStorage.getItem("footerCartQuantity");
 
 
+// The items shop 
 let items = [
     {
         Image: 'shop-assets/1.jpg',
@@ -57,9 +59,10 @@ let items = [
     },
 ];
 
+
+// Refresh the pages
 udpateView()
 
-console.log(items);
 
 
 function udpateView() {
@@ -71,7 +74,8 @@ function udpateView() {
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
             
-           
+        
+        // Create the item
         const itemElement = document.createElement("div");
         itemElement.classList.add("item");
         itemContainer.appendChild(itemElement);
@@ -103,22 +107,31 @@ function udpateView() {
             
 
 
-            
 
+        // Button Add to Cart event
         itemElementTextButton.addEventListener ("click", () => {
 
+
+                // Adds the item to the cart vector
                 cart.push(item);
 
+
+                // Makes the footer appear
                 footerCart.style.opacity = "1";
-    
+
+
+                // The quantity of items in the cart is displayed in the footer
                 footerCartQuantity.innerText = cart.length + " products in the cart.";
-    
+
+                // The total value of the cart is displayed in the footer
                 totalValue += parseFloat(item.Price.replace(",", "."));
     
                 const formattedTotalValue = totalValue.toLocaleString();
 
                 footerCartValue.innerText = "R$  " + formattedTotalValue
 
+
+                // Saves in localstorage 
                 localStorage.setItem("footerCartQuantity", footerCartQuantity.innerText);
                 localStorage.setItem("cart", JSON.stringify(cart));
                 localStorage.setItem("totalValue", JSON.stringify(totalValue));
@@ -137,6 +150,7 @@ function udpateView() {
     }
 
 
+    // Get the cart total value stored and put them in the inner text
 
     if (localStorage.getItem("totalValue")) {
         totalValue = JSON.parse(localStorage.getItem("totalValue"));
