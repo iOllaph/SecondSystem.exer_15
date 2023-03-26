@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+
+:root {
+    --letter-Color:#78A1BB;
+    --Background-Color: #EBF5EE;
+    --Background-Color-Letter: #283044;
+    --Background-Color-white: #fcfcfc;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+    background-color: var(--Background-Color-white);
+}
+
+
+
+
+
+
+/*------------------HEADER------------------*/
+
+
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+}
+
+.logo {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 2.5rem;
+}
+
+a {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1.8rem;
+}
+  
+.hover {
+    color: #0000;
+    background: 
+      linear-gradient(90deg,#78A1BB 50%,#000 0) 
+      var(--_p,100%)/200% no-repeat;
+    -webkit-background-clip: text;
+            background-clip: text;
+    transition: .4s;
+}
+
+
+.hover:hover {
+    --_p: 0%;
+}
+
+
+
+
+/*------------------CART DETAIL------------------*/
+
+
+
+
+
+.cart-detail {
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    margin-top: 50px;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.cart-detail-text, .cart-detail-value {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    align-items: center;
+    
+}
+
+.cart-detail-text-title, .cart-detail-value-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+/*------------------CART------------------*/
+
+
+
+
+
+
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    margin-top: 25px;
+    align-items: center;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    
+    
+}
+
+hr.solid {
+    border-top: 3px solid #bbb;
+    opacity: 0.5;
+    margin-bottom: 50px;
+}
+
+
+.cart-item {
+    width: 1000px;
+    height: 300px;
+    
+
+}
+
+img {
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    width: 25%;
+    height: 100%;
+    float: left;
+}
+
+.item-content {
+    width: 75% ;
+   height: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 25px;
+}
+
+.item-quantity {
+    font-weight: 300;
+    font-size: 1rem;
+
+}
+
+.input-quantity {
+    width: 40px;
+    height: 20px;
+    font-size: 1rem;
+    font-family: "Roboto";
+    font-weight: 300;
+}
+
+.item-remove {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.item-title, .item-total-value {
+    font-size: 1.5rem;
+}
+
+
+
+
+
+/*------------------FOOTER------------------*/
+
+
+
+
+
+footer {    
+    display: flex;
+    margin: auto;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.footer-a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding-bottom: 10px;
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: #78A1BB;
+}
+
+.button-checkout {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 1rem;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+.footer-a  {
+    color: #0000;
+    background: 
+      linear-gradient(90deg,#78A1BB 50%,#000 0) 
+      var(--_p,100%)/200% no-repeat;
+    -webkit-background-clip: text;
+            background-clip: text;
+    transition: .4s;
+  }
+
+
+.footer-a:hover {
+    --_p: 0%;
+  }

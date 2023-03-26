@@ -19,6 +19,14 @@
 }
 
 
+
+
+
+/*------------------HEADER------------------*/
+
+
+
+
   
 
 header {
@@ -58,20 +66,31 @@ a {
   }
 
 
+
+
+
+
+/*------------------ITEM CONTAINER------------------*/
+
   
+
+
+
+
 .item-container {
     display: grid;
     grid-template-columns: auto auto auto auto;
     margin-top: 100px;
     justify-content: center;
     gap: 100px;
+    margin-bottom: 100px;
   }
 
 .item {
     width: 200px;
     height: 400px;
     flex-direction: column;
-   
+    
     
 }
 
@@ -84,12 +103,11 @@ img {
 }
 
 .item-text {
-    font-family: "Roboto";
+    font-family: 'Noto Sans TC', sans-serif;
     color: var(--Background-Color-Letter);
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
     gap: 5px;
 }
 
@@ -100,4 +118,58 @@ img {
 
 .item-name {
     font-weight: 500;
+}
+
+.item-button {
+    color: var(--Background-Color-Letter);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    padding: 0.7em 1.7em;
+    font-size: 1rem;
+    border-radius: 0.5em;
+    transition: all .3s;
+    border: white;
+    cursor: pointer;
+}
+  
+.item-button:hover {
+    background-color: var(--letter-Color);
+}
+
+
+
+/*------------------FLOATING CART------------------*/
+
+
+.footer {
+  position:fixed;
+  bottom:0;
+  left:0;
+  display: flex;
+  justify-content: space-evenly;
+  width:100%;
+  align-items: center;
+  height: 50px;
+  background-color: var(--letter-Color);
+}
+
+.footer-cart-item {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 400;
+    background-color: var(--letter-Color);
+}
+
+.footer-cart-value {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 700;
+    font-size: 1.5;
+    background-color: var(--letter-Color);
+}
+
+.footer-a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: #000;
+    text-decoration: underline;
+    background-color: var(--letter-Color);
 }

@@ -8,12 +8,15 @@
     --Background-Color-white: #fcfcfc;
 }
 
+
 * {
 	border: 0;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
+
+
 body {
 	background: var(--Background-Color-white);
 	font-family: 'Noto Sans TC', sans-serif;
@@ -24,10 +27,17 @@ body {
   justify-content: center;
 }
 
+
+
+/*------------------LOGO------------------*/
+
+
+
 .title {
     place-self: center;
     
 }
+
 
 a {
     color: var(--letter-Color);
