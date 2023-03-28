@@ -40,20 +40,20 @@ let items = [
         id: 1
     },
     {
-        Image: 'shop-assets/1.jpg',
-        Title: 'Ilana Matte Side Plate.' , 
+        Image: 'shop-assets/2.jpg',
+        Title: 'Ilana Matte Side Plate.2.' , 
         Price: '155.34' ,
         id: 2
     },
     {
-        Image: 'shop-assets/1.jpg',
-        Title: 'Ilana Matte Side Plate.' , 
+        Image: 'shop-assets/3.jpg',
+        Title: 'Ilana Matte Side Plate.3.' , 
         Price: '155.12'  ,
         id: 3
     },
     {
-        Image: 'shop-assets/1.jpg',
-        Title: 'Ilana Matte Side Plate.' , 
+        Image: 'shop-assets/4.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
         Price: '155.55'  ,
         id: 4
     },
@@ -111,10 +111,20 @@ function udpateView() {
         // Button Add to Cart event
         itemElementTextButton.addEventListener ("click", () => {
 
-
-                // Adds the item to the cart vector
+                
+                /* Check if the item already exists in the cart. 
+                If the item is not found (i.e., index is -1) add the item to the cart */
+            
+                const index = cart.findIndex((cartItem) => cartItem.id === item.id);
+                if (index === -1) {
+                // Item does not exist in the cart, add it
                 cart.push(item);
-
+                } else {
+                // Item already exists in the cart, update its quantity
+                alert ("You already have this item in the cart.\r\nTo alter the quantity you must go to the cart.");
+                return;
+                }
+                
 
                 // Makes the footer appear
                 footerCart.style.opacity = "1";
@@ -128,7 +138,7 @@ function udpateView() {
     
                 const formattedTotalValue = totalValue.toLocaleString();
 
-                footerCartValue.innerText = "R$  " + formattedTotalValue
+                footerCartValue.innerText = "R$  " + formattedTotalValue;
 
 
                 // Saves in localstorage 

@@ -167,18 +167,28 @@ img {
     font-weight: 300;
 }
 
-.item-remove {
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+.button-Remove {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 0.8rem;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    border: 1px solid #e8e8e8;
+    transition: all .3s;
+  }
+  
+  button:hover {
+    border: 1px solid white;
+    font-weight: 500;
+  }
+  
+  button:active {
+    font-weight: 500;
+    box-shadow: 4px 4px 12px #c5c5c5,
+               -4px -4px 12px #ffffff;
+  }
 
 
 .item-title, .item-total-value {
