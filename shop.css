@@ -142,34 +142,44 @@ img {
 
 
 .footer {
-  position:fixed;
-  bottom:0;
-  left:0;
-  display: flex;
-  justify-content: space-evenly;
-  width:100%;
-  align-items: center;
-  height: 50px;
-  background-color: var(--letter-Color);
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(0px);
+    position:fixed;
+    bottom:0;
+    left:0;
+    display: flex;
+    justify-content: space-evenly;
+    width:100%;
+    align-items: center;
+    height: 75px;
 }
 
 .footer-cart-item {
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 400;
-    background-color: var(--letter-Color);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-cart-value {
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 700;
-    font-size: 1.5;
-    background-color: var(--letter-Color);
+    font-size: 1.3rem;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
-.footer-a {
+.footer-a  {
     text-decoration: none;
     font-size: 1.2rem;
-    color: #000;
-    text-decoration: underline;
-    background-color: var(--letter-Color);
-}
+    color: #0000;
+    background: 
+      linear-gradient(90deg,#78A1BB 50%,#000 0) 
+      var(--_p,100%)/200% no-repeat;
+    -webkit-background-clip: text;
+            background-clip: text;
+    transition: .4s;
+  }
+
+
+.footer-a:hover {
+    --_p: 0%;
+  }

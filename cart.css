@@ -117,7 +117,7 @@ a {
     align-items: center;
     font-family: 'Noto Sans TC', sans-serif;
     font-weight: 500;
-    
+    margin-bottom: 200px;
     
 }
 
@@ -205,15 +205,18 @@ img {
 
 
 
-footer {    
+footer {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(0px);
+    position:fixed;
+    bottom:0;
+    left:0;
     display: flex;
-    margin: auto;
+    justify-content: space-evenly;
+    width:100%;
     align-items: center;
-    justify-content: space-between;
-    width: 1000px;
-    margin-top: 150px;
-    margin-bottom: 50px;
-    font-family: 'Noto Sans TC', sans-serif;
+    height: 75px;
+    
 }
 
 .footer-a {
@@ -228,9 +231,9 @@ footer {
 .button-checkout {
     font-family: 'Noto Sans TC', sans-serif;
     font-size: 1rem;
-    background-color: black;
-    border: none;
-    color: white;
+    border: 1px solid #78A1BB;
+    font-weight: 700;
+    color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -239,7 +242,7 @@ footer {
 }
 
 .button-checkout:hover {
-    font-weight: 700;
+    color: var(--letter-Color);
 }
 
 
