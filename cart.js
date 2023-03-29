@@ -45,9 +45,10 @@ cartTotalItem.innerText = totalQuantity + "  items";
 //If cart is empty the alert is triggered
 if (cart.length == 0) {
     alert("Your cart is empty");
+    footerText.innerText = "Go Shopping."
 
 } else {
-    footerText.innerText = "Proceed to Checkout."
+    footerText.innerText = "Continue Shopping."
     footerButton.style.display = "block";
 }
 
@@ -71,18 +72,7 @@ if (cart.length == 0) {
     cartTotalValue.innerText = "R$   " + totalCartValue.toFixed(2);
 
     totalQuantity = 0
-    cartTotalItem.innerText = totalQuantity + "  items"; 
-
-                        
-    if (cart.length == 0) {
-        alert("Your cart is empty");
-        footerButton.style.display = "none";
-    } else {
-        footerText.innerText = "Proceed to Checkout."
-        footerButton.style.display = "block";
-    }
-
-
+    cartTotalItem.innerText = totalQuantity + "  items";
   
 
     // Saves the modification in the cart local storage, 
@@ -93,6 +83,12 @@ if (cart.length == 0) {
     
     
     cartContainer.innerHTML = "";
+
+
+
+    alert("Your cart is empty");
+    footerButton.style.display = "none";
+    footerText.innerText = "Go Shopping."
 }
  
 
