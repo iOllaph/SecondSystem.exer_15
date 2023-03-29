@@ -179,16 +179,16 @@ img {
     transition: all .3s;
   }
   
-  button:hover {
+.button-Remove:hover {
     border: 1px solid white;
     font-weight: 500;
-  }
+}
   
-  button:active {
+.button-Remove:active {
     font-weight: 500;
     box-shadow: 4px 4px 12px #c5c5c5,
                -4px -4px 12px #ffffff;
-  }
+}
 
 
 .item-title, .item-total-value {
@@ -237,6 +237,11 @@ footer {
     display: inline-block;
     cursor: pointer;
 }
+
+.button-checkout:hover {
+    font-weight: 700;
+}
+
 
 
 .footer-a  {
