@@ -1,24 +1,106 @@
+
+
+// HTML const
 const cartContainer = document.querySelector(".cart-container");
 const cartTotalValue = document.querySelector(".cart-detail-value-number");
+const cartTotalItem = document.querySelector(".cart-detail-text-value");
+const footerText = document.querySelector(".footer-a");
+const footerButton = document.querySelector(".button-checkout");
+
+
 
 
 // The selected items will go inside this vector
 let cart = [];
 
-
 // Get the items stored and put them in the cart vector
 if (localStorage.getItem("cart")) {
-    cart = JSON.parse(localStorage.getItem("cart"))
+    cart = JSON.parse(localStorage.getItem("cart"));
 }
 
 
 
-let totalValue = 0;
-JSON.parse(localStorage.getItem("totalValue"))
+let totalCartValue = 0;
+if (localStorage.getItem("totalCartValue")) {
+    totalCartValue = JSON.parse(localStorage.getItem("totalCartValue"))
+}
+
+// This expression in Math.round must be used to round the numbers in a simply way
+totalCartValue = Math.round(totalCartValue * 100) / 100; 
+
+cartTotalValue.innerText = "R$   " + totalCartValue;
+
+
+
+let totalQuantity = 0;
+
+if (localStorage.getItem("totalQuantity")) {
+    totalQuantity = JSON.parse(localStorage.getItem("totalQuantity"));
+}
+
+cartTotalItem.innerText = totalQuantity + "  items";
+
+
+
+//If cart is empty the alert is triggered
+if (cart.length == 0) {
+    alert("Your cart is empty");
+
+} else {
+    footerText.innerText = "Proceed to Checkout."
+    footerButton.style.display = "block";
+}
+
+
+
+// Button Checkout Function 
+ function Checkout() {
+    
+
+    
+    alert(    
+        "Thank you for completing your order "
+    );
+
+
+
+    // Cart becomes empty
+    cart.length = 0;
+
+    totalCartValue = 0;
+    cartTotalValue.innerText = "R$   " + totalCartValue.toFixed(2);
+
+    totalQuantity = 0
+    cartTotalItem.innerText = totalQuantity + "  items"; 
+
+                        
+    if (cart.length == 0) {
+        alert("Your cart is empty");
+        footerButton.style.display = "none";
+    } else {
+        footerText.innerText = "Proceed to Checkout."
+        footerButton.style.display = "block";
+    }
+
+
+  
+
+    // Saves the modification in the cart local storage, 
+    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
+    localStorage.setItem("totalCartValue",JSON.stringify(totalCartValue))   
+    
+    
+    
+    cartContainer.innerHTML = "";
+}
+ 
 
 
 // Refresh the pages
 udpateView()
+
+
 
 function udpateView() {
 
@@ -26,6 +108,7 @@ function udpateView() {
 
     for (let i = 0; i < cart.length; i++) {
         const item = cart[i];
+
 
         // create the items of the cart
 
@@ -103,8 +186,7 @@ function udpateView() {
 
                     // Delete the item 
                     cartElementContentRemove.addEventListener("click", () =>{
-                        
-                          
+                               
                         // Finds the item that is selected
                         var index = cart.findIndex(function(cartElementFind) {
                             return cartElementFind.id == item.id
@@ -112,10 +194,51 @@ function udpateView() {
                         
                         // Remove it from the cart vector
                         cart.splice(index, 1);
-            
+
+
+
+
+                        //Refresh the Quantity count
+                        let totalQuantity = 0;
+                        for (let i = 0; i < cart.length; i++) {
+                            const item = cart[i];
+                            totalQuantity += item.Quantity;
+                        }
+
+                        cartTotalItem.innerText = totalQuantity + "  items"; 
+
+
+
+                        //Refresh the totalCartValue count
+                        let totalCartValue = 0;
+                            for (let i = 0; i < cart.length; i++) {
+                                const item = cart[i];
+    
+                                    totalCartValue += item.Total;
+                    
+                        }
+
+                        cartTotalValue.innerText = "R$   " + totalCartValue.toFixed(2);
+
+
+                         
+                        if (cart.length == 0) {
+                            alert("Your cart is empty");
+                             footerButton.style.display = "none";
+                        } else {
+                            footerText.innerText = "Proceed to Checkout."
+                            footerButton.style.display = "block";
+                        }
+
+
+
                         // Saves the modification in the cart local storage, 
                         localStorage.setItem("cart", JSON.stringify(cart));
-            
+                        localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity));
+                        localStorage.setItem("totalCartValue",JSON.stringify(totalCartValue))    
+
+
+                        
                         cartElement.remove(); 
                     })
 
@@ -132,7 +255,8 @@ function udpateView() {
                         cartElementContentQuantityInput.classList.add("input-quantity");
                         cartElementContentQuantityInput.type = "number";
                         cartElementContentQuantityInput.min = 1;
-                        cartElementContentQuantityInput.value = item.Quantity;
+                        cartElementContentQuantityInput.value = item.Quantity || 1;
+                        cartElementContentQuantity.appendChild(cartElementContentQuantityInput);
 
                         // add an event listener to the input element's keydown event --TEACHER CHATGPT--
                         cartElementContentQuantityInput.addEventListener("keydown", (event) => {
@@ -144,8 +268,9 @@ function udpateView() {
                             }
                         });
 
+                     
                         
-                        
+                        // Input Number Funcion
                         cartElementContentQuantityInput.addEventListener("input", (event) => {
                             
 
@@ -155,24 +280,46 @@ function udpateView() {
 
                             item.Total = item.Price * item.Quantity;
 
+                            // This expression in Math.round must be used to round the numbers in a simply way
+                            item.Total = Math.round(item.Total * 100) / 100; 
                             
                             cartElementContentTotalValue.innerText ="R$  " + item.Total.toFixed(2);
                            
+
+
                             localStorage.setItem("cart", JSON.stringify(cart));
 
+                            
+                            
+                            let totalQuantity = 0;
+                            for (let i = 0; i < cart.length; i++) {
+                                const item = cart[i];
+                                totalQuantity += item.Quantity;
+                            }
+                            cartTotalItem.innerText = totalQuantity + "  items";
+                            localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity)); 
 
+                            
+
+                            let totalCartValue = 0;
+                            for (let i = 0; i < cart.length; i++) {
+                                const item = cart[i];
                            
+                                totalCartValue += item.Total;
 
-                        });
+                            }
+                            cartTotalValue.innerText = "R$   " + totalCartValue.toFixed(2);
+                            localStorage.setItem("totalCartValue",JSON.stringify(totalCartValue));
 
-                        cartElementContentQuantity.appendChild(cartElementContentQuantityInput);
-        
-                        let totalCartValue = cart.reduce((total, item) => total + item.Total, 0); 
-                        totalValue += totalCartValue;
-                        localStorage.setItem("totalValue", JSON.stringify(totalValue));
-                        console.log(totalValue)
+                        });        
+            
+
                         
-
+                       
+            
+                        
+                    
+                    
 
                         
         
