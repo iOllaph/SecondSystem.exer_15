@@ -1,14 +1,11 @@
 
 const itemContainer = document.querySelector(".item-container");
 
+
 // Footer Const
 const footerCart = document.querySelector(".footer");
 const footerCartQuantity = document.querySelector(".footer-cart-item");
 const footerCartValue = document.querySelector(".footer-cart-value");
-
-
-// totaValue represents the total value of the cart
-let totalValue = 0;
 
 
 // The selected items will go inside this vector
@@ -27,8 +24,25 @@ if (cart.length > 0) {
 }
 
 
-// Get the items quantity stored and put them in the inner text
-footerCartQuantity.innerText = localStorage.getItem("footerCartQuantity");
+let totalCartValue = 0;
+if (localStorage.getItem("totalCartValue")) {
+    totalCartValue = JSON.parse(localStorage.getItem("totalCartValue"))
+}
+
+
+// This expression in Math.round must be used to round the numbers in a simply way
+totalCartValue = Math.round(totalCartValue * 100) / 100; 
+
+
+footerCartValue.innerText = "R$   " + totalCartValue;
+
+
+let totalQuantity = 0;
+
+if (localStorage.getItem("totalQuantity")) {
+    totalQuantity = JSON.parse(localStorage.getItem("totalQuantity"));
+}
+footerCartQuantity.innerText = totalQuantity  + " products in the cart.";
 
 
 // The items shop 
@@ -37,32 +51,103 @@ let items = [
         Image: 'shop-assets/1.jpg',
         Title: 'Ilana Matte Side Plate.' , 
         Price: '155.23'  ,
+        Quantity: 1 ,
+        Total: 0 ,
         id: 1
     },
     {
         Image: 'shop-assets/2.jpg',
         Title: 'Ilana Matte Side Plate.2.' , 
         Price: '155.34' ,
+        Quantity: 1 ,
+        Total: 0 ,
         id: 2
     },
     {
         Image: 'shop-assets/3.jpg',
         Title: 'Ilana Matte Side Plate.3.' , 
         Price: '155.12'  ,
+        Quantity: 1 ,
+        Total: 0 ,
         id: 3
     },
     {
         Image: 'shop-assets/4.jpg',
         Title: 'Ilana Matte Side Plate.4.' , 
         Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
         id: 4
     },
+    {
+        Image: 'shop-assets/5.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 5
+    },
+    {
+        Image: 'shop-assets/6.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 6
+    },
+    {
+        Image: 'shop-assets/7.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 7
+    },
+    {
+        Image: 'shop-assets/8.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 8
+    },
+    {
+        Image: 'shop-assets/9.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 9
+    },
+    {
+        Image: 'shop-assets/10.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 10
+    },
+    {
+        Image: 'shop-assets/11.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 11
+    },
+    {
+        Image: 'shop-assets/12.jpg',
+        Title: 'Ilana Matte Side Plate.4.' , 
+        Price: '155.55'  ,
+        Quantity: 1 ,
+        Total: 0 ,
+        id: 12
+    },
 ];
-
+ 
 
 // Refresh the pages
 udpateView()
-
 
 
 function udpateView() {
@@ -74,7 +159,7 @@ function udpateView() {
     for (let i = 0; i < items.length; i++) {
         const item = items[i];
             
-        
+
         // Create the item
         const itemElement = document.createElement("div");
         itemElement.classList.add("item");
@@ -104,9 +189,7 @@ function udpateView() {
         itemElementTextButton.innerText = "Add to cart.";
         itemElementText.appendChild(itemElementTextButton);
 
-            
-
-
+        item.Total = item.Price * item.Quantity;
 
         // Button Add to Cart event
         itemElementTextButton.addEventListener ("click", () => {
@@ -126,49 +209,44 @@ function udpateView() {
                 }
                 
 
+
                 // Makes the footer appear
                 footerCart.style.opacity = "1";
 
 
-                // The quantity of items in the cart is displayed in the footer
-                footerCartQuantity.innerText = cart.length + " products in the cart.";
-
-                // The total value of the cart is displayed in the footer
-                totalValue += parseFloat(item.Price.replace(",", "."));
-    
-                const formattedTotalValue = totalValue.toLocaleString();
-
-                footerCartValue.innerText = "R$  " + formattedTotalValue;
-
-
-                // Saves in localstorage 
-                localStorage.setItem("footerCartQuantity", footerCartQuantity.innerText);
-                localStorage.setItem("cart", JSON.stringify(cart));
-                localStorage.setItem("totalValue", JSON.stringify(totalValue));
-
-
-
-                console.log(cart);
                 
-
-
-
-            })
+                let totalQuantity = 0;
+                 for (let i = 0; i < cart.length; i++) {
+                     const item = cart[i];
+                    totalQuantity += item.Quantity ;
+                    }
+                footerCartQuantity.innerText = totalQuantity  + " products in the cart.";
+                localStorage.setItem("totalQuantity", JSON.stringify(totalQuantity)); 
             
 
 
+                // The total value of the cart is displayed in the footer
+                let totalCartValue = 0;
+                for (let i = 0; i < cart.length; i++) {
+                    const item = cart[i];
+                    
+                    totalCartValue += item.Total;
+
+
+                }
+                footerCartValue.innerText = "R$   " + totalCartValue.toFixed(2) ;
+                localStorage.setItem("totalCartValue",JSON.stringify(totalCartValue))
+
+
+                // Saves in localstorage 
+                localStorage.setItem("cart", JSON.stringify(cart));
+
+
+            })
+
+
+
     }
-
-
-    // Get the cart total value stored and put them in the inner text
-
-    if (localStorage.getItem("totalValue")) {
-        totalValue = JSON.parse(localStorage.getItem("totalValue"));
-        const formattedTotalValue = totalValue.toLocaleString();
-        footerCartValue.innerText = "R$  " + formattedTotalValue;
-    }
-    
-
 
 }
 
